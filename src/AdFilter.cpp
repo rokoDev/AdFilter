@@ -8,6 +8,7 @@
 #include "AdFilter.h"
 #include <algorithm>
 #include <random>
+#include <iterator>
 
 namespace helper
 {
@@ -47,20 +48,15 @@ namespace helper
         std::random_device rd;
         std::mt19937 mt(rd());
         
-        while (!bannersSortedByPrice.empty() && (retVal.size() < numAdPlaces)) {
+        while (!bannersSortedByPrice.empty() && (retVal.size() < numAdPlaces))
+        {
             const auto count = bannersSortedByPrice.count(*bannersSortedByPrice.begin());
-            if (count > 1) {
+            if (count > 1)
+            {
                 std::uniform_int_distribution<std::size_t> dist(0, count-1);
                 const auto randIndex = dist(mt);
-                for (std::size_t i = 0; i < count; ++i)
-                {
-                    if (i == randIndex)
-                    {
-                        retVal.push_back(*bannersSortedByPrice.begin());
-                        bannersSortedByPrice.erase(*bannersSortedByPrice.begin());
-                    }
-                    
-                }
+                retVal.push_back(*std::next(bannersSortedByPrice.begin(), randIndex));
+                bannersSortedByPrice.erase(*bannersSortedByPrice.begin());
             }
             else
             {
