@@ -3,20 +3,6 @@ language: cpp
 branches:
   only:
     - master
-
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - cmake
-      - python3
-
-      # https://github.com/travis-ci-tester/travis-test-clang-cxx-11
-      - libstdc++-4.8-dev
-
-      # https://github.com/travis-ci-tester/travis-test-gcc-cxx-11
-      - g++-4.8
     
 matrix:
   include:
@@ -29,6 +15,7 @@ matrix:
           packages:
             - gcc-4.8
             - g++-4.8
+            - libstdc++-4.8-dev
           sources:
             - ubuntu-toolchain-r-test
 
