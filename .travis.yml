@@ -3,21 +3,23 @@ language: cpp
 branches:
   only:
     - master
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      # https://github.com/travis-ci-tester/travis-test-clang-cxx-11
+      - libstdc++-4.8-dev
+
+      # https://github.com/travis-ci-tester/travis-test-gcc-cxx-11
+      - gcc-4.8
+      - g++-4.8
     
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: true
-      compiler: gcc
-      addons:
-        apt:
-          packages:
-            - gcc-4.8
-            - g++-4.8
-            - libstdc++-4.8-dev
-          sources:
-            - ubuntu-toolchain-r-test
+compiler: gcc
+os: linux
+sudo: required
+dist: trusty
 
 before_install:
   - git submodule update --init --recursive
