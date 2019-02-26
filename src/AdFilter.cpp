@@ -6,7 +6,7 @@
 //
 
 #include "AdFilter.h"
-#include <iostream>
+#include <algorithm>
 #include <random>
 
 namespace helper
