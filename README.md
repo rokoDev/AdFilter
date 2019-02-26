@@ -1,4 +1,6 @@
-
+| **`Linux`** |
+|------------------|
+[![Build Status](https://travis-ci.com/rokoDev/AdFilter.svg?branch=master)](https://travis-ci.com/rokoDev/AdFilter)
 
 # AdFilter
 
