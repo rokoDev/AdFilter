@@ -4,22 +4,13 @@ branches:
   only:
     - master
 
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      # https://github.com/travis-ci-tester/travis-test-clang-cxx-11
-      - libstdc++-4.8-dev
-
-      # https://github.com/travis-ci-tester/travis-test-gcc-cxx-11
-      - gcc-4.8
-      - g++-4.8
-    
-compiler: gcc
-os: linux
-sudo: required
-dist: trusty
+# setup container matrix
+matrix:
+  include:   
+    - os: linux
+      sudo: required
+      dist: trusty
+      compiler: gcc
 
 before_install:
   - git submodule update --init --recursive
