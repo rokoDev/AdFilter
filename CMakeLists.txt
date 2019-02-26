@@ -4,9 +4,6 @@ cmake_minimum_required(VERSION ${cmake_version})
 
 set(AppName "AdFilter")
 
-set(CC "/usr/bin/clang")
-set(CXX "/usr/bin/clang++")
-
 project(${AppName} 
 		VERSION 1.0.0.0
 		LANGUAGES CXX)
