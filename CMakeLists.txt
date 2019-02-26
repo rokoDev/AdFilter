@@ -33,5 +33,9 @@ set(SOURCES
 
 include_directories("${INCLUDE_DIRS}")
 
+# Setup testing
+enable_testing()
+add_subdirectory(tests)
+
 # Create application
 add_executable(${AppName} ${SOURCES} ${HEADERS})
