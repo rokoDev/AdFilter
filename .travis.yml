@@ -40,9 +40,9 @@ script:
   - ctest -VV --output-on-failure -C Debug
 
 notifications:
-  recipients:
-    - rokodev@mail.ru
   email:
+    recipients:
+      - rokodev@mail.ru
     on_success: change
     on_failure: always
     
