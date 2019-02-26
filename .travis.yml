@@ -43,6 +43,6 @@ notifications:
   email:
     recipients:
       - rokodev@mail.ru
-    on_success: always
+    on_success: change
     on_failure: always
     
