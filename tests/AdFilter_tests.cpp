@@ -33,6 +33,8 @@ void checkUniqueIdAndPrices(const std::vector<helper::Banner> & banners)
     checkUniquePrices(banners);
 }
 
+#pragma mark AdFilterTest
+
 class AdFilterTest: public ::testing::Test {
     
 public:
@@ -191,6 +193,8 @@ TEST_F(AdFilterTest, TestNewState)
     ASSERT_EQ(banners.size(), 1);
 }
 
+#pragma mark AdFilterEqualPricesTest
+
 class AdFilterEqualPricesTest: public ::testing::Test {
     
 public:
@@ -273,6 +277,8 @@ TEST_F(AdFilterEqualPricesTest, Test3)
     checkUniqueIdAndPrices(banners);
     ASSERT_EQ(banners.size(), 1);
 }
+
+#pragma mark AdFilterPredicatTest
 
 class AdFilterPredicatTest: public ::testing::Test {
     
@@ -363,6 +369,57 @@ TEST_F(AdFilterPredicatTest, Test4)
     });
     checkUniqueIdAndPrices(banners);
     ASSERT_EQ(banners.size(), 0);
+}
+
+#pragma mark AdFilterEmptyStateTest
+
+class AdFilterEmptyStateTest: public ::testing::Test {
+    
+public:
+    
+    AdFilterEmptyStateTest()
+    {
+        
+    }
+    const std::vector<helper::Banner> & getBanners() const
+    {
+        return _banners;
+    }
+    
+protected:
+    void SetUp()
+    {
+        _banners =
+        {
+            {
+                200,// price;
+                2,// id;
+                {}// validCountries;
+            },
+            {
+                300,// price;
+                2,// id;
+                {}// validCountries;
+            }
+        };
+    }
+    
+    void TearDown()
+    {
+        _banners.clear();
+    }
+    
+private:
+    std::vector<helper::Banner> _banners;
+};
+
+TEST_F(AdFilterEmptyStateTest, Test0)
+{
+    const auto banners = helper::extractBanners(getBanners(), 10, "cfvd");
+    checkUniqueIdAndPrices(banners);
+    ASSERT_EQ(banners.size(), 1);
+    ASSERT_EQ(banners[0].price, 200);
+    ASSERT_EQ(banners[0].id, 2);
 }
 
 int main(int argc, char **argv)
